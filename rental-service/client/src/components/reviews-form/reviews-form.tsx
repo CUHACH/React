@@ -21,7 +21,7 @@ function ReviewsForm({ onAddReview }: ReviewsFormProps) {
             comment: review,
             date: new Date().toISOString(),
             user: {
-                name: 'You',
+                name: 'Valeev',
                 avatarUrl: "/img/avatar.svg",
                 isPro: false
             }

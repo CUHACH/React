@@ -60,7 +60,7 @@ function Map({ city, points, selectedPointId }: MapProps): React.ReactElement {
       markersLayer.clearLayers();
       try {
         map.removeLayer(markersLayer);
-      } catch (err: unknown) {}
+      } catch (err: unknown) { /* empty */ }
     };
   }, [map, points, selectedPointId]);
 

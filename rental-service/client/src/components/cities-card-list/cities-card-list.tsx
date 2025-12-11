@@ -1,17 +1,26 @@
 import { OffersList } from "../../types/offer"
-import { CitiesCard } from "../cities-card/cities-card";
-
+import { PlaceCard } from "../place-card/place-card";
 type CitiesCardListProps = {
     offersList: OffersList[];
-};
+    onListItemHover: (offerId: string | undefined) => void;
+}
 
-function CitiesCardList({ offersList }: CitiesCardListProps) {
+function CitiesCardList({ offersList, onListItemHover = () => {} }: CitiesCardListProps) {
+
     return (
         <div className="cities__places-list places__list tabs__content">
-            {Array.from(offersList, (item) =>
-                <CitiesCard key={item.id} id={item.id} title={item.title} type={item.type} price={item.price}
-                    previewImage={item.previewImage} isPremium={item.isPremium} rating={item.rating} />
-            )}
+            {offersList.map((offer) => (
+                <PlaceCard
+                    key={offer.id}
+                    {...offer}
+                    cardClassName="cities__card"
+                    imgWrapperClass="cities__image-wrapper"
+                    imgWidth={260}
+                    imgHeight={200}
+                    onMouseEnter={() => onListItemHover(offer.id)}
+                    onMouseLeave={() => onListItemHover(undefined)}
+                />
+            ))}
         </div>
     );
 }

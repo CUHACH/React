@@ -8,21 +8,24 @@ import { PageNotFound } from "../../pages/page-not-found/page-not-found";
 import { AppRoute, AuthorizationStatus } from  "../../const"
 import { PrivateRoute } from "../private-route/private-route";
 import { FullOffer, OffersList } from "../../types/offer";
+import { Review } from "../../types/reviews";
+import { reviews } from "../../mocks/reviews";
 
 
 type AppMainPageProps = {
     rentalOffersCount: number;
     offers: FullOffer[];
     offersList: OffersList[];
+    reviews: Review[];
 }
 
-function App({ rentalOffersCount,offers, offersList}: AppMainPageProps): JSX.Element {
+function App({offers}: AppMainPageProps): JSX.Element {
     return (
         <BrowserRouter>
             <Routes>
                 <Route
                     path={AppRoute.Main}
-                    element={<MainPage rentalOffersCount={rentalOffersCount} offersList={offersList} />}
+                    element={<MainPage />}
                 />
                 <Route
                     path={AppRoute.Login}
@@ -30,7 +33,7 @@ function App({ rentalOffersCount,offers, offersList}: AppMainPageProps): JSX.Ele
                 />
                 <Route
                     path={`${AppRoute.Offer}/:id`} 
-                    element={<OfferPage offers={offers} />}
+                    element={<OfferPage offers={offers} reviews={reviews}/>}
                 />
                 <Route
                     path={ AppRoute.Favorites }
